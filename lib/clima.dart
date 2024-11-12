@@ -29,13 +29,13 @@ class Clima extends StatelessWidget {
               ),
               Icon(
                 Icons.wb_sunny, // Icono simplificado de clima
-                size: 80,
+                size: 200,
                 color: Colors.yellow[700],
               ),
               Text(
                 '32°', // Valor de temperatura
                 style: const TextStyle(
-                  fontSize: 70,
+                  fontSize: 80,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),

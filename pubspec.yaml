@@ -1,4 +1,4 @@
-name: clima_app
+name: WeatherApp
 description: "A new Flutter project."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -11,21 +11,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.5  # Asegúrate de usar la última versión disponible
+  http: ^0.13.5
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.9.2 # Añade esta línea
 
 flutter_icons:
   android: true
   ios: false
-  image_path_android: "assets/icons/icon.png"
+  image_path: "assets/icons/icon.png" # Usa esta clave general
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/  # Asegúrate de que el ícono esté aquí
+    - assets/icons/
