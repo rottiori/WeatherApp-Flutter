@@ -25,7 +25,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: false
-  image_path: "assets/icons/icon.png" # Usa esta clave general
+  image_path: "assets/icons/icon.png"
 
 flutter:
   uses-material-design: true

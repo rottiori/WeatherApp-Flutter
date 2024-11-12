@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import '../model/clima_model.dart';
 
 class ClimaService {
-  final String apiKey =
-      "b784f577eeff4864a3b213907241111"; // Cambia esto por tu API Key
+  final String apiKey = "b784f577eeff4864a3b213907241111"; // API Key
 
   // Función para obtener el clima actual por ciudad
   Future<ClimaModel> ClimaActual(String ciudad) async {

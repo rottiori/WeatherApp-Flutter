@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ClimaPage(), // Definimos la página principal
+      home: ClimaPage(), //  página principal
     );
   }
 }
