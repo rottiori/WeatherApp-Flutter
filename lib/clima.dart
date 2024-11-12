@@ -27,15 +27,15 @@ class Clima extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              Image.network(
-                'https://cdn.weatherapi.com/weather/64x64/day/113.png', // Ejemplo de URL para el ícono del clima
-                width: 80,
-                height: 80,
+              Icon(
+                Icons.wb_sunny, // Icono simplificado de clima
+                size: 80,
+                color: Colors.yellow[700],
               ),
               Text(
                 '32°', // Valor de temperatura
                 style: const TextStyle(
-                  fontSize: 50,
+                  fontSize: 70,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
