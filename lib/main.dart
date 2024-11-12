@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'clima.dart';
+import 'clima.dart'; // Importamos el archivo clima.dart
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp()); // Iniciamos la app
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-      initialRoute: Clima.routeName,
-      routes: {
-        Clima.routeName: (context) => const Clima(),
-      },
+      title: 'WeatherApp',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ClimaPage(), // Definimos la página principal
     );
   }
 }

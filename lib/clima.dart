@@ -1,74 +1,73 @@
 import 'package:flutter/material.dart';
+import 'services/clima_service.dart';
+import 'model/clima_model.dart';
 
-class Clima extends StatelessWidget {
-  static const String routeName = '/clima'; // Define la ruta aquí
-  const Clima({super.key});
+class ClimaPage extends StatefulWidget {
+  @override
+  _ClimaPageState createState() => _ClimaPageState();
+}
+
+class _ClimaPageState extends State<ClimaPage> {
+  ClimaModel? _clima; // Modelo para almacenar datos del clima
+  TextEditingController _controller =
+      TextEditingController(); // Controlador para campo de texto
+
+  // Función para obtener el clima
+  Future<void> obtenerClima() async {
+    try {
+      String ciudad = _controller.text;
+      var clima = await ClimaService().ClimaActual(ciudad);
+      setState(() {
+        _clima = clima;
+      });
+    } catch (e) {
+      print("Error al obtener el clima: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          width: 200,
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+      appBar: AppBar(
+        title: Text("WeatherApp"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: "Ingrese la ciudad",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: obtenerClima,
+              child: Text("Obtener clima"),
+            ),
+            SizedBox(height: 20),
+            if (_clima != null) ...[
               Text(
-                'País',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
+                "Hora: ${_clima!.hora}",
+                style: TextStyle(fontSize: 20),
               ),
-              Icon(
-                Icons.wb_sunny, // Icono simplificado de clima
-                size: 200,
-                color: Colors.yellow[700],
+              SizedBox(height: 10),
+              Image.network("https:${_clima!.icon}"),
+              SizedBox(height: 10),
+              Text(
+                "Condición: ${_clima!.descripcion}",
+                style: TextStyle(fontSize: 20),
               ),
               Text(
-                '32°', // Valor de temperatura
-                style: const TextStyle(
-                  fontSize: 80,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              Text(
-                'Ciudad',
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black54,
-                ),
-              ),
-              Column(
-                children: [
-                  Text(
-                    '12:01 P.M',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    'MONDAY', // Día de la semana
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+                "Temperatura: ${_clima!.tempC}°C",
+                style: TextStyle(fontSize: 20),
               ),
             ],
-          ),
+          ],
         ),
       ),
     );

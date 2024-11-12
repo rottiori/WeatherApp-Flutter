@@ -1,11 +1,24 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../model/clima_model.dart';
 
 class ClimaService {
-  String baseUrl = 'https://api.weatherapi.com/v1';
+  final String apiKey =
+      "b784f577eeff4864a3b213907241111"; // Cambia esto por tu API Key
 
-  Future ClimaActual(String key, String ciudad) async {
-    var url = Uri.https('$baseUrl/current.json?key=$key&q=$ciudad&lang=es');
-    var response = await http.post(url);
-    print('Response status: ${response.statusCode}');
+  // Función para obtener el clima actual por ciudad
+  Future<ClimaModel> ClimaActual(String ciudad) async {
+    final url = Uri.parse(
+      "http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$ciudad",
+    );
+
+    final respuesta = await http.get(url);
+
+    if (respuesta.statusCode == 200) {
+      final jsonData = json.decode(respuesta.body);
+      return ClimaModel.fromJson(jsonData);
+    } else {
+      throw Exception("Error al obtener datos del clima");
+    }
   }
 }
