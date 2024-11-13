@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'services/clima_service.dart';
 import 'model/clima_model.dart';
 
@@ -10,6 +11,26 @@ class ClimaPage extends StatefulWidget {
 class _ClimaPageState extends State<ClimaPage> {
   ClimaModel? _clima;
   TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _obtenerUbicacionYClima();
+  }
+
+  Future<void> _obtenerUbicacionYClima() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      String ciudad = "${position.latitude},${position.longitude}";
+      var clima = await ClimaService().ClimaActual(ciudad);
+      setState(() {
+        _clima = clima;
+      });
+    } catch (e) {
+      print("Error al obtener la ubicación: $e");
+    }
+  }
 
   Future<void> obtenerClima() async {
     try {
@@ -36,13 +57,22 @@ class _ClimaPageState extends State<ClimaPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextField(
-                controller: _controller,
-                decoration: InputDecoration(
-                  labelText: "Ingrese la ciudad",
-                  border: OutlineInputBorder(),
+              // Barra de búsqueda minimalista
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                textAlign: TextAlign.center,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                  controller: _controller,
+                  decoration: InputDecoration(
+                    hintText: "Buscar ciudad",
+                    border: InputBorder.none,
+                    icon: Icon(Icons.search, color: Colors.grey),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
