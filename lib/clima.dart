@@ -88,17 +88,17 @@ class _ClimaPageState extends State<ClimaPage> {
                 SizedBox(height: 10),
                 Image.network(
                   "https:${_clima!.icon}",
-                  width: 100,
-                  height: 100,
+                  width: 200,
+                  height: 200,
                 ),
                 SizedBox(height: 10),
                 Text(
                   "${_clima!.tempC}°",
-                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.w300),
+                  style: TextStyle(fontSize: 65, fontWeight: FontWeight.w300),
                 ),
                 Text(
                   "${_clima!.ciudad}",
-                  style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                  style: TextStyle(fontSize: 40, color: Colors.grey[700]),
                 ),
                 SizedBox(height: 20),
                 Text(

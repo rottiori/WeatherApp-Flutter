@@ -37,19 +37,20 @@ class ClimaModel {
   static String _getDayOfWeek(int day) {
     switch (day) {
       case 1:
-        return "Lunes";
+        return "LUNES";
       case 2:
-        return "Martes";
+        return "MARTES";
       case 3:
-        return "Miércoles";
+        return "MIÉRCOLES";
       case 4:
-        return "Jueves";
+        return "JUEVES";
       case 5:
-        return "Viernes";
+        return "VIERNES";
       case 6:
-        return "Sábado";
+        return "SÁBADO";
       case 7:
-        return "Domingo";
+        return "DOMINGO";
+
       default:
         return "";
     }
