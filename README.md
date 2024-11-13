@@ -1,5 +1,5 @@
 
-# ClimaApp - Flutter
+# WeatherApp
 
 **ClimaApp** es un proyecto en Flutter que permite visualizar información del clima. Este repositorio incluye todos los archivos necesarios para ejecutar la aplicación en cualquier dispositivo compatible.
 
