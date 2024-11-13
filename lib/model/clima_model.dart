@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ClimaModel {
   final String pais;
   final String ciudad;
@@ -17,40 +19,37 @@ class ClimaModel {
     required this.dia,
   });
 
-  // Método para crear una instancia del modelo a partir de JSON
   factory ClimaModel.fromJson(Map<String, dynamic> json) {
-    // Extraer la fecha y hora para determinar el día de la semana
     String localtime = json['location']['localtime'];
     DateTime dateTime = DateTime.parse(localtime);
 
     return ClimaModel(
       pais: json['location']['country'],
       ciudad: json['location']['name'],
-      hora: localtime,
+      hora: DateFormat('HH:mm').format(dateTime), // Solo hora en formato HH:MM
       icon: json['current']['condition']['icon'],
       descripcion: json['current']['condition']['text'],
       tempC: json['current']['temp_c'],
-      dia: _getDayOfWeek(dateTime.weekday), // Asignar el día de la semana
+      dia: _getDayOfWeek(dateTime.weekday), // Día en español
     );
   }
 
-  // Método auxiliar para convertir el número de día en nombre de día
   static String _getDayOfWeek(int day) {
     switch (day) {
       case 1:
-        return "MONDAY";
+        return "Lunes";
       case 2:
-        return "TUESDAY";
+        return "Martes";
       case 3:
-        return "WEDNESDAY";
+        return "Miércoles";
       case 4:
-        return "THURSDAY";
+        return "Jueves";
       case 5:
-        return "FRIDAY";
+        return "Viernes";
       case 6:
-        return "SATURDAY";
+        return "Sábado";
       case 7:
-        return "SUNDAY";
+        return "Domingo";
       default:
         return "";
     }

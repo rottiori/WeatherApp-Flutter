@@ -42,6 +42,7 @@ class _ClimaPageState extends State<ClimaPage> {
                   labelText: "Ingrese la ciudad",
                   border: OutlineInputBorder(),
                 ),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -57,7 +58,7 @@ class _ClimaPageState extends State<ClimaPage> {
                 SizedBox(height: 10),
                 Image.network(
                   "https:${_clima!.icon}",
-                  width: 100, // Tamaño aumentado de la imagen
+                  width: 100,
                   height: 100,
                 ),
                 SizedBox(height: 10),
@@ -71,11 +72,11 @@ class _ClimaPageState extends State<ClimaPage> {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  "${_clima!.hora}",
+                  "${_clima!.hora}", // Hora en formato HH:MM
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 Text(
-                  "${_clima!.dia}",
+                  "${_clima!.dia}", // Día en español
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
