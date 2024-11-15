@@ -23,12 +23,16 @@ class ClimaModel {
     String localtime = json['location']['localtime'];
     DateTime dateTime = DateTime.parse(localtime);
 
+    // Traducción de la descripción
+    String descripcionEnIngles = json['current']['condition']['text'];
+    String descripcionEnEspanol = _traducirDescripcion(descripcionEnIngles);
+
     return ClimaModel(
       pais: json['location']['country'],
       ciudad: json['location']['name'],
       hora: DateFormat('HH:mm').format(dateTime), // Solo hora en formato HH:MM
       icon: json['current']['condition']['icon'],
-      descripcion: json['current']['condition']['text'],
+      descripcion: descripcionEnEspanol,
       tempC: json['current']['temp_c'],
       dia: _getDayOfWeek(dateTime.weekday), // Día en español
     );
@@ -50,9 +54,40 @@ class ClimaModel {
         return "SÁBADO";
       case 7:
         return "DOMINGO";
-
       default:
         return "";
+    }
+  }
+
+  // clima al español
+  static String _traducirDescripcion(String descripcion) {
+    switch (descripcion.toLowerCase()) {
+      case 'sunny':
+        return 'Soleado';
+      case 'clear':
+        return 'Despejado';
+      case 'partly cloudy':
+        return 'Parcialmente nublado';
+      case 'cloudy':
+        return 'Nublado';
+      case 'overcast':
+        return 'Cubierto';
+      case 'mist':
+        return 'Neblina';
+      case 'rain':
+        return 'Lluvia';
+      case 'drizzle':
+        return 'Llovizna';
+      case 'thunderstorm':
+        return 'Tormenta';
+      case 'snow':
+        return 'Nieve';
+      case 'fog':
+        return 'Niebla';
+      case 'hail':
+        return 'Granizo';
+      default:
+        return descripcion; // Retorna en inglés si no hay traducción
     }
   }
 }
