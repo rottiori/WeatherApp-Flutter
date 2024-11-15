@@ -7,6 +7,8 @@
   <img src="https://github.com/rottiori/WeatherApp-Flutter/blob/main/assets/icons/icon.png" alt="ClimaApp Icon" width="150" height="150">
 </p>
 
+> **⚠️ Nota:** He notado que la API_KEY no debería ser visible en el código al hacer push a GitHub y debería agregarse en un .env o cifrarse por razones de seguridad y buenas prácticas, tal vez debería implementar esto en el futuro y tenerlo en cuenta para proyectos futuros.
+
 ## Tabla de contenidos
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
